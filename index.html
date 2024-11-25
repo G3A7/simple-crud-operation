@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section>
+      <div class="container p-4 my-3 rounded-3">
+        <h1 class="text-center">Crud Operation</h1>
+        <div class="form w-75 mx-auto">
+          <div class="form-floating mb-3 w-75 mx-auto">
+            <input type="text" class="form-control" id="productName" placeholder="" />
+            <label for="productName">productName</label>
+          </div>
+
+          <div class="form-floating mb-3 w-75 mx-auto">
+            <input type="text" class="form-control" id="productPrice" placeholder="" />
+            <label for="productPrice">productPrice</label>
+          </div>
+
+          <div class="form-floating mb-3 w-75 mx-auto">
+            <input
+              list="list"
+              type="text"
+              class="form-control"
+              id="productCategory"
+              placeholder=""
+            />
+            <label for="productCategory">productCategory</label>
+            <datalist id="list">
+              <option value="tv" />
+              <option value="mobile" />
+              <option value="screens" />
+              <option value="electronics" />
+            </datalist>
+          </div>
+
+          <div class="form-floating mb-3 w-75 mx-auto">
+            <textarea
+              style="height: 100px"
+              class="form-control"
+              id="productDescription"
+              placeholder=""
+            ></textarea>
+            <label for="productDescription">productDescription</label>
+          </div>
+
+          <div class="form-floating mb-3 w-75 mx-auto">
+            <input type="file" class="form-control" id="productImage" placeholder="" />
+            <label for="productImage">productImage</label>
+          </div>
+
+          <div class="btn w-100 text-start ms-5 ps-4">
+            <button id="btn-create" onclick="addProduct()" class="btn ms-5  btn-light">
+              Add Product
+            </button>
+            <button id="btn-update" onclick="updateProd()" class="btn d-none btn-warning">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="my-5 p-3">
+      <div class="container">
+        <div class="search my-3">
+          <input
+            oninput="search(this.value)"
+            type="search"
+            name="search"
+            id="searchHighlight"
+            placeholder="searchByName"
+            class="form-control"
+          />
+        </div>
+        <div class="row g-4" id="container-data"></div>
+      </div>
+    </section>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
