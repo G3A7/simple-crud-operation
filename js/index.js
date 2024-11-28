@@ -14,19 +14,30 @@ if (localStorage.getItem("products")) {
   display();
 }
 function addProduct() {
-  const objData = {
-    id: Date.now(),
-    name: name.value,
-    price: price.value,
-    desc: desc.value,
-    cat: cat.value,
-    image: image.files[0]?.name ? "./img/" + image.files[0]?.name : "https://placehold.co/600x400",
-  };
-  console.log(objData);
-  arrayOfData.push(objData);
-  localStorage.setItem("products", JSON.stringify(arrayOfData));
-  display();
-  clearForms();
+  if (
+    validation(name) &&
+    validation(price) &&
+    validation(desc) &&
+    validation(cat) &&
+    validation(image)
+  ) {
+    console.log(image.value);
+    const objData = {
+      id: Date.now(),
+      name: name.value,
+      price: price.value,
+      desc: desc.value,
+      cat: cat.value,
+      image: image.files[0]?.name
+        ? "./img/" + image.files[0]?.name
+        : "https://placehold.co/600x400",
+    };
+    console.log(objData);
+    arrayOfData.push(objData);
+    localStorage.setItem("products", JSON.stringify(arrayOfData));
+    display();
+    clearForms();
+  }
 }
 
 function display(list = arrayOfData) {
@@ -94,6 +105,11 @@ function clearForms() {
   desc.value = "";
   cat.value = "";
   image.value = "";
+  name.classList.remove("is-valid");
+  price.classList.remove("is-valid");
+  desc.classList.remove("is-valid");
+  cat.classList.remove("is-valid");
+  image.classList.remove("is-valid");
 }
 
 function updateProd() {
@@ -126,4 +142,31 @@ function returnIdx(arr, id) {
   });
   console.log(ans);
   return ans;
+}
+
+function validation(ele) {
+  // productImage;
+  // productDescription;
+  // productCategory;
+  // productPrice;
+  // productName;
+
+  let regexObj = {
+    productName: /^[A-Z][a-z]{3,25}$/,
+    productDescription: /^.{3,}$/m,
+    productCategory: /^(electronics|screens|mobile|tv)$/i,
+    productPrice: /^[1-9][1-9][1-9]\.[1-9][1-9]$/,
+    productImage: /^.{1,}\.(png|jpeg|jpg|avif|svg)$/,
+  };
+  if (regexObj[ele.id].test(ele.value)) {
+    ele.classList.add("is-valid");
+    ele.classList.remove("is-invalid");
+    ele.nextElementSibling.classList.replace("d-block", "d-none");
+    return true;
+  } else {
+    ele.classList.add("is-invalid");
+    ele.classList.remove("is-valid");
+    ele.nextElementSibling.classList.replace("d-none", "d-block");
+    return false;
+  }
 }

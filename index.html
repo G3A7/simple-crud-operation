@@ -13,23 +13,40 @@
         <h1 class="text-center">Crud Operation</h1>
         <div class="form w-75 mx-auto">
           <div class="form-floating mb-3 w-75 mx-auto">
-            <input type="text" class="form-control" id="productName" placeholder="" />
+            <input
+              oninput="validation(this)"
+              type="text"
+              class="form-control"
+              id="productName"
+              placeholder=""
+            />
+            <p class="d-none text-danger">Error</p>
             <label for="productName">productName</label>
           </div>
 
           <div class="form-floating mb-3 w-75 mx-auto">
-            <input type="text" class="form-control" id="productPrice" placeholder="" />
+            <input
+              oninput="validation(this)"
+              type="text"
+              class="form-control"
+              id="productPrice"
+              placeholder=""
+            />
+            <p class="d-none text-danger">Error</p>
             <label for="productPrice">productPrice</label>
           </div>
 
           <div class="form-floating mb-3 w-75 mx-auto">
             <input
+              oninput="validation(this)"
               list="list"
               type="text"
               class="form-control"
               id="productCategory"
               placeholder=""
             />
+            <p class="d-none text-danger">must be (tv,mobile....)</p>
+
             <label for="productCategory">productCategory</label>
             <datalist id="list">
               <option value="tv" />
@@ -41,21 +58,32 @@
 
           <div class="form-floating mb-3 w-75 mx-auto">
             <textarea
+              oninput="validation(this)"
               style="height: 100px"
               class="form-control"
               id="productDescription"
               placeholder=""
             ></textarea>
+            <p class="d-none text-danger">Description shorter</p>
+
             <label for="productDescription">productDescription</label>
           </div>
 
           <div class="form-floating mb-3 w-75 mx-auto">
-            <input type="file" class="form-control" id="productImage" placeholder="" />
+            <input
+              onchange="validation(this)"
+              type="file"
+              class="form-control"
+              id="productImage"
+              placeholder=""
+            />
+            <p class="d-none text-danger">Img Must be . (jpg-png,,,)</p>
+
             <label for="productImage">productImage</label>
           </div>
 
           <div class="btn w-100 text-start ms-5 ps-4">
-            <button id="btn-create" onclick="addProduct()" class="btn ms-5  btn-light">
+            <button id="btn-create" onclick="addProduct()" class="btn ms-5 btn-light">
               Add Product
             </button>
             <button id="btn-update" onclick="updateProd()" class="btn d-none btn-warning">
